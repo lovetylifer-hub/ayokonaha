@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Deja Brew — Cozy Café Life</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#fff4e8;color:#68483f;font-family:Trebuchet MS,Arial,sans-serif}
+header{padding:12px 16px;background:#fff9f1;border-bottom:1px solid #ead4c9;display:flex;justify-content:space-between;align-items:center;gap:10px}.logo{font: bold 23px Georgia,serif}.logo span{color:#c77996}.tag{font-size:12px;background:#f6dce4;padding:8px 12px;border-radius:99px}
+main{max-width:1200px;margin:auto;padding:16px}.intro{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:12px}.intro h1{font:normal clamp(24px,4vw,38px) Georgia,serif;margin:0 0 5px}.intro em{color:#bf7790}.intro p{font-size:13px;color:#896b61;margin:0}.frame{position:relative;border:7px solid #fffaf3;border-radius:18px;overflow:hidden;box-shadow:0 12px 30px #5b392b22;background:#f5d9d5}.scene{display:block;width:100%;height:auto}.hotspot{position:absolute;border:2px solid #fff8ee;background:#e8b7c8d9;color:#5d3b35;border-radius:99px;padding:8px 12px;font-size:clamp(9px,1.3vw,14px);font-weight:bold;cursor:pointer;box-shadow:0 2px 7px #51322a25}.rei{left:24%;top:44%}.cherish{left:54%;top:37%}.tyli{left:74%;top:38%}.counter{left:54%;top:48%}.hotspot:hover{filter:brightness(1.04);transform:translateY(-1px)}.status{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;background:#fffaf3;padding:11px 14px;border-top:1px solid #ead4c9;font-size:13px}.status button,.control button{border:0;border-radius:99px;background:#704b42;color:#fff7ed;padding:10px 14px;font-weight:bold;cursor:pointer}.controls{display:flex;align-items:center;justify-content:center;gap:8px;margin:12px auto}.controls button{min-width:43px;border-radius:12px}.dialog{margin-top:12px;background:#fffaf3;border:1px solid #ead4c9;border-radius:16px;padding:15px;line-height:1.5}.dialog h2{font:normal 20px Georgia,serif;margin:0 0 6px}.dialog p{margin:0;color:#85675d;font-size:13px}.small{font-size:11px;color:#94766b;margin-top:8px}
+@media(max-width:600px){main{padding:10px}.intro{display:block}.tag{display:inline-block;margin-top:8px}.hotspot{padding:5px 7px}.controls{gap:5px}.controls button{padding:10px 11px;min-width:38px}}
+</style>
+</head>
+<body>
+<header><div class="logo">déjà <span>brew</span> ♡</div><div class="tag">A feeling worth repeating</div></header>
+<main>
+<div class="intro"><div><h1>Your little <em>café world</em></h1><p>Tap the characters or café counter to interact with your scene.</p></div><div class="tag">✿ Cozy mode · Day 01</div></div>
+<div class="frame">
+<img class="scene" src="cafe-scene.png" alt="Isometric Deja Brew café with pink decor, warm wood, plants, staff, and cats">
+<button class="hotspot rei" onclick="talk('Rei')">♡ Talk to Rei</button>
+<button class="hotspot cherish" onclick="talk('Cherish')">E · Order</button>
+<button class="hotspot tyli" onclick="talk('Tyli')">♡ Talk to Tyli</button>
+<button class="hotspot counter" onclick="talk('Counter')">Order a drink ♡</button>
+</div>
+<div class="status"><span id="statusText"><b>Welcome!</b> Tap a character to start your café shift.</span><button onclick="resetGame()">↻ Reset shift</button></div>
+<div class="controls control" aria-label="Movement controls"><button onclick="move('up')">↑</button><button onclick="move('left')">←</button><button onclick="move('down')">↓</button><button onclick="move('right')">→</button><button onclick="talk('Counter')">♡ Interact</button></div>
+<div class="dialog"><h2 id="dialogTitle">Welcome to Deja Brew ♡</h2><p id="dialogText">This version uses the actual café scene artwork as the background so it matches the visual you liked. Tap Rei, Cherish, Tyli, or the counter to play through a mini café story.</p><p id="orderText" class="small">Task: greet Rei → order from Cherish → collect your drink from Tyli.</p></div>
+</main>
+<script>
+let step=0,walks=0;
+const dialogue={
+Rei:['Rei · Hostess','“Welcome to Deja Brew! ♡ Come on in, take a breath, and make yourself at home.”'],
+Cherish:['Cherish · Cashier','“Hi, lovely! Your options today are Vanilla Cloud Latte ₱129, Strawberry Matcha Blush ₱149, or Little Brownie Moments ₱89.”'],
+Tyli:['Tyli · Barista','“One Vanilla Cloud Latte, made with love! Enjoy your cozy café day ♡”'],
+Counter:['Order counter','“Choose a Vanilla Cloud Latte for ₱129? Your demo order has no real payment.”']
+};
+function talk(who){
+if(who==='Counter'){
+ if(step<1){set('Cherish’s counter','Rei is waiting to welcome you first! Tap Rei near the entrance.');return}
+ if(step===1){step=2;set('Order placed! ♡','Cherish has taken your demo order for a Vanilla Cloud Latte · ₱129. Now tap Tyli to collect it.');document.getElementById('orderText').textContent='Your tray: Vanilla Cloud Latte · ₱129';document.getElementById('statusText').textContent='Order placed! Find Tyli at the barista station.';return}
+ set('Your order','Your Vanilla Cloud Latte is being prepared. Tap Tyli to collect it!');return
+}
+if(who==='Rei'&&step===0){step=1;set(...dialogue.Rei);document.getElementById('statusText').textContent='Task 1 complete: you greeted Rei. Go order from Cherish!';document.getElementById('orderText').textContent='Task: order from Cherish → pick up from Tyli.';return}
+if(who==='Cherish'&&step===0){set(...dialogue.Cherish);document.getElementById('dialogText').textContent='“I can help you order! Say hello to Rei first, then come back to the counter.”';return}
+if(who==='Cherish'&&step>=1){set(...dialogue.Cherish);document.getElementById('dialogText').textContent='“Lovely choice! Tap Order a drink or the counter button to place a demo order.”';return}
+if(who==='Tyli'&&step<2){set(...dialogue.Tyli);document.getElementById('dialogText').textContent='“Your drink is almost ready! Complete your order at Cherish’s counter first.”';return}
+if(who==='Tyli'&&step>=2){step=3;set('Shift complete! ☕','“Here’s your Vanilla Cloud Latte! You finished your first café shift and earned 10 pretend café coins.”');document.getElementById('statusText').textContent='All tasks complete! Great job, barista ♡';document.getElementById('orderText').textContent='Task complete · Demo order only';return}
+set(...dialogue[who]);
+}
+function set(title,text){document.getElementById('dialogTitle').textContent=title;document.getElementById('dialogText').textContent=text}
+function move(dir){walks++;document.getElementById('statusText').textContent='You moved '+dir+' around the café! Tap a character hotspot to interact.';if(walks%4===0)document.getElementById('dialogText').textContent='Your character is exploring the café. In this lightweight version, movement is represented by controls while the illustrated scene stays in place.'}
+function resetGame(){step=0;walks=0;set('Welcome to Deja Brew ♡','Tap Rei near the entrance to begin your shift.');document.getElementById('statusText').textContent='Welcome! Tap a character to start your café shift.';document.getElementById('orderText').textContent='Task: greet Rei → order from Cherish → collect your drink from Tyli.'}
+document.addEventListener('keydown',e=>{const k=e.key.toLowerCase();if(k==='e'||k==='enter')talk('Counter');else if(['w','a','s','d','arrowup','arrowleft','arrowdown','arrowright'].includes(k))move(k)});
+</script>
+</body>
+</html>
