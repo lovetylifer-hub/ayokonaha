@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Deja Brew — a feeling worth repeating.">
+<title>Deja Brew — A feeling worth repeating</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:Zawijasy;src:url("fonts/zawijasy.otf") format("opentype");font-display:swap}
+:root{--pink:#fcc1de;--beige:#dbc1b3;--gray:#e8e7e5;--mocha:#c19c8c;--brown:#644535;--cream:#fffdf7;--rose:#a66e7d;--ink:#594237}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:Nunito, sans-serif;overflow-x:hidden}
+img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
+.topline{height:64px;background:var(--pink);display:flex;justify-content:center;align-items:center;gap:22px;overflow:hidden}
+.topline img{width:35px;height:35px;object-fit:contain;opacity:.82}
+.topline .tiny-mark{font-family:Georgia,serif;font-size:27px;color:#9e7080;letter-spacing:7px}
+.awning{height:48px;background-color:var(--beige);background-image:radial-gradient(#9c7865 1.1px,transparent 1.4px);background-size:13px 13px;position:relative}
+.awning:after{content:"";position:absolute;left:0;right:0;bottom:-22px;height:24px;background:radial-gradient(42px 23px at 42px 0,var(--cream) 98%,transparent 100%) repeat-x;background-size:84px 24px;z-index:2}
+header{position:relative;z-index:5;background:#fffdf7eF;border-bottom:1px solid #eadbd2}
+nav{max-width:1160px;margin:auto;padding:13px 24px;display:flex;align-items:center;justify-content:space-between;gap:22px}
+.brand{display:flex;align-items:center;gap:10px;min-width:190px}.monogram{font-family:Georgia,serif;font-size:48px;line-height:.8;font-style:italic;color:var(--mocha);text-shadow:1px 2px #ead7cc}.brand-copy strong{display:block;font-family:Georgia,serif;letter-spacing:5px;font-size:15px}.brand-copy small{font-size:8px;letter-spacing:2px}
+.navlinks{display:flex;align-items:center;gap:9px}.navlinks a{display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:30px;font-size:12px;font-weight:900;transition:.2s}.navlinks a:hover{background:#f9e3eb;transform:translateY(-3px)}.navlinks img{width:27px;height:27px;object-fit:contain}.navlinks .contact{background:var(--brown);color:white;padding:10px 17px}
+.menu-toggle{display:none;border:1px solid var(--brown);background:var(--pink);border-radius:50%;width:42px;height:42px;color:var(--brown);font-size:20px}
+.hero{max-width:1240px;margin:auto;padding:66px 28px 78px;position:relative;isolation:isolate}
+.hero:before{content:"";position:absolute;inset:0;z-index:-1;background-image:radial-gradient(#c9ad9d40 .8px,transparent .8px);background-size:9px 9px;mask-image:linear-gradient(to bottom,transparent,black 12%,black 85%,transparent)}
+.shop-sign{width:min(980px,90%);margin:0 auto;position:relative;text-align:center;background:#f8d8e6;border:2px solid #805e5b;border-radius:48% 48% 8px 8px/30% 30% 8px 8px;padding:25px 20px 19px;box-shadow:inset 0 0 0 7px #fceaf1,0 6px 0 #c6a18e}
+.shop-sign:before,.shop-sign:after{content:"✦";position:absolute;top:37%;font-size:26px;color:#9b6e80}.shop-sign:before{left:8%}.shop-sign:after{right:8%}
+.shop-sign h1{font-family:Zawijasy,"Brush Script MT",cursive;font-size:clamp(58px,8vw,104px);font-weight:400;line-height:.95;color:#86596e;margin:0;text-shadow:1px 2px #fff8}
+.shop-sign p{font-size:9px;letter-spacing:4px;font-weight:900;margin:10px 0 0}
+.striped-awning{width:min(940px,88%);height:35px;margin:-2px auto 0;border:1.5px solid #805e5b;background:repeating-linear-gradient(90deg,#fff8f4 0 27px,#f5bdd4 27px 54px);clip-path:polygon(0 0,100% 0,100% 78%,96% 100%,92% 78%,88% 100%,84% 78%,80% 100%,76% 78%,72% 100%,68% 78%,64% 100%,60% 78%,56% 100%,52% 78%,48% 100%,44% 78%,40% 100%,36% 78%,32% 100%,28% 78%,24% 100%,20% 78%,16% 100%,12% 78%,8% 100%,4% 78%,0 100%)}
+.storefront{max-width:1030px;margin:45px auto 0;display:grid;grid-template-columns:230px minmax(0,1fr) 125px;gap:20px;align-items:end}
+.door{background:#b9947a;border:5px solid #785744;border-radius:115px 115px 7px 7px;padding:17px 14px 14px;min-height:390px;box-shadow:inset 0 0 0 5px #d8b9a2;position:relative}
+.door-label{background:#f8d7e5;border:2px solid #765545;border-radius:50%;padding:9px 5px;text-align:center;font-family:Georgia,serif;font-style:italic;font-size:17px;margin-bottom:16px}
+.door-glass{background:#fff9ef;border:5px double #a97987;min-height:172px;padding:14px 8px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:Georgia,serif;font-style:italic;font-size:19px}
+.door-glass img{width:88px;height:82px;object-fit:contain}
+.hours{background:#fff9ef;border:1px solid #8b6b56;text-align:center;font-size:10px;line-height:1.7;margin-top:12px;padding:10px 4px}
+.hours b{letter-spacing:1.5px;font-size:9px}
+.cafe-window{background:#f5e5c9;border:5px solid #94715d;padding:15px;min-height:340px;box-shadow:inset 0 0 0 5px #f4c5d8;position:relative}
+.window-canopy{height:36px;margin:-15px -15px 15px;background:repeating-linear-gradient(90deg,#fff9f5 0 22px,#f6c5d9 22px 44px);border-bottom:2px solid #9a7864}
+.window-content{background:#fff9eb;border:2px solid #c6a28c;min-height:255px;text-align:center;padding:25px 24px 18px;position:relative}
+.eyebrow{font-size:9px;letter-spacing:2.4px;text-transform:uppercase;font-weight:900;color:#9b7180}
+.window-content h2{font-family:Zawijasy,"Brush Script MT",cursive;font-size:clamp(36px,4vw,55px);font-weight:400;line-height:1.02;margin:12px 0;color:var(--brown)}
+.window-content p{font-size:13px;line-height:1.7;max-width:470px;margin:0 auto}
+.window-objects{display:flex;align-items:center;justify-content:center;gap:24px;margin:5px auto 8px}
+.window-objects img{width:65px;height:62px;object-fit:contain}
+.shelf{background:#b9947a;border:4px solid #785744;border-radius:42px 42px 5px 5px;padding:10px;display:grid;gap:10px}
+.shelf a{background:#fff9ef;border:2px solid #96735e;border-radius:8px;text-align:center;padding:9px 4px;font-size:9px;font-weight:900;transition:.2s}
+.shelf a:hover{transform:rotate(-3deg) scale(1.04)}.shelf img{height:47px;width:100%;object-fit:contain;margin-bottom:4px}
+.float{position:absolute;z-index:1;object-fit:contain;pointer-events:none;filter:drop-shadow(1px 4px 2px #64453518);animation:bob 5s ease-in-out infinite}
+.float.f1{width:115px;left:1%;top:29%}.float.f2{width:125px;right:1%;top:23%;animation-delay:1s}.float.f3{width:112px;left:7%;bottom:4%;animation-delay:1.7s}.float.f4{width:100px;right:8%;bottom:0;animation-delay:2s}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-12px) rotate(4deg)}}
+.section{padding:88px 24px;position:relative}.inner{max-width:1080px;margin:auto}.section-heading{text-align:center;margin-bottom:35px}.section-heading h2,.story-copy h2,.promo-copy h2{font-family:Zawijasy,"Brush Script MT",cursive;font-weight:400;font-size:clamp(42px,6vw,68px);line-height:1.05;margin:8px 0;color:var(--brown)}
+.story{background:#f9dfeb}.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:center}.art-collage{min-height:390px;position:relative;background:#fff8ee;border:2px solid #c7a28c;border-radius:48% 48% 12px 12px;padding:20px;display:grid;place-items:center;transform:rotate(-1.5deg)}.art-collage .cup{width:72%;height:330px;object-fit:contain}.art-collage .mini{position:absolute;width:95px;object-fit:contain}.art-collage .mini.one{top:8px;left:5px}.art-collage .mini.two{right:4px;bottom:12px}
+.story-copy p,.promo-copy p{font-size:14px;line-height:1.9}.button{display:inline-block;margin-top:12px;padding:12px 21px;background:var(--brown);color:#fff;border:1px solid var(--brown);border-radius:30px;font-size:12px;font-weight:900;transition:.2s}.button:hover{background:var(--pink);color:var(--brown);transform:translateY(-3px)}
+.menu-section{background:#fffdf7}.menu-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.menu-card{position:relative;text-align:center;background:#f8eee7;border:1px solid #c8a895;padding:24px 18px 22px;border-radius:46% 46% 12px 12px/18% 18% 12px 12px;transition:.25s}.menu-card:hover{transform:translateY(-8px) rotate(1deg)}.menu-card img{height:175px;width:100%;object-fit:contain}.menu-card h3{font-family:Zawijasy,"Brush Script MT",cursive;font-size:32px;font-weight:400;margin:9px 0}.menu-card p{font-size:12px;line-height:1.7;min-height:60px}.menu-card small{font-weight:900;color:#98715e}
+.promo{background:#e8e7e5}.promo-card{background:#644535;color:#fff9f3;display:grid;grid-template-columns:1.2fr .8fr;gap:25px;align-items:center;padding:38px 45px;border-radius:8px 55px 8px 55px;overflow:hidden}.promo-copy h2{color:#f9c9dd}.promo-copy p{max-width:570px}.promo-card img{width:100%;height:260px;object-fit:contain}
+.gallery{background:#f9e3eb}.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;align-items:center}.gallery-grid img{width:100%;height:170px;object-fit:contain;background:#fff9f4;border:1px dashed #d2b5a4;border-radius:12px;padding:10px;transition:.25s}.gallery-grid img:hover{transform:rotate(3deg) scale(1.04)}
+footer{background:#644535;color:#fff8f2;text-align:center;padding:38px 20px}footer .footer-mark{font-family:Georgia,serif;font-size:43px;font-style:italic;color:#f6c8d9}footer strong{display:block;letter-spacing:5px;font-family:Georgia,serif}footer p{font-size:11px;letter-spacing:1px}
+@media(max-width:850px){.navlinks{gap:2px}.navlinks a{padding:7px 8px;font-size:11px}.storefront{grid-template-columns:190px 1fr}.shelf{display:none}.float.f1{width:85px}.float.f2{width:90px}}
+@media(max-width:650px){.topline{height:48px}.topline img{width:27px;height:27px}.awning{height:36px}.menu-toggle{display:block}.nav{padding:10px 17px}.navlinks{display:none;position:absolute;top:100%;left:12px;right:12px;background:#fffaf5;border:1px solid #d9c1b3;border-radius:16px;padding:12px;flex-direction:column;box-shadow:0 12px 24px #64453520}.navlinks.open{display:flex}.navlinks a{width:100%;justify-content:center;padding:10px}.hero{padding:46px 14px 58px}.shop-sign{width:96%;padding:22px 8px 17px}.shop-sign h1{font-size:clamp(48px,13vw,72px)}.shop-sign p{font-size:7px;letter-spacing:2px}.striped-awning{width:94%;height:27px}.storefront{grid-template-columns:1fr;margin-top:32px;gap:17px}.door{width:min(240px,85%);min-height:0;margin:auto}.cafe-window{min-height:0}.window-content{padding:20px 13px;min-height:225px}.window-objects{gap:12px}.window-objects img{width:54px;height:53px}.float.f1{left:-7px;top:25%;width:65px}.float.f2{right:-5px;top:35%;width:70px}.float.f3{left:0;bottom:0;width:70px}.float.f4{right:0;bottom:0;width:70px}.section{padding:65px 18px}.story-grid,.promo-card{grid-template-columns:1fr;gap:25px}.art-collage{min-height:300px}.art-collage .cup{height:250px}.menu-cards{grid-template-columns:1fr}.menu-card{max-width:340px;width:100%;margin:auto}.promo-card{padding:28px 23px}.promo-card img{height:190px}.gallery-grid{grid-template-columns:repeat(2,1fr)}.gallery-grid img{height:140px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="topline" aria-hidden="true">
+<img src="assets/star-pink.png" alt=""><img src="assets/flower-yellow.png" alt="">
+<span class="tiny-mark">♡ DEJA BREW ♡</span><img src="assets/bow.png" alt=""><img src="assets/star-cream.png" alt="">
+</div>
+<div class="awning"></div>
+<header>
+<nav>
+<a class="brand" href="index.html" aria-label="Deja Brew home"><span class="monogram">DB</span><span class="brand-copy"><strong>DEJA BREW</strong><small>A FEELING WORTH REPEATING</small></span></a>
+<button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+<div class="navlinks" id="navLinks">
+<a href="index.html"><img src="assets/flower-pink.png" alt="">Home</a>
+<a href="menu.html"><img src="assets/teacup-stack.png" alt="">Menu</a>
+<a href="about.html"><img src="assets/storybook-deer-books.png" alt="">Our Story</a>
+<a href="promotions.html"><img src="assets/heart-plaid.png" alt="">Promos</a>
+<a href="gallery.html"><img src="assets/butterfly.png" alt="">Gallery</a>
+<a class="contact" href="contact.html">Say Hello ♡</a>
+</div>
+</nav>
+</header>
+<main>
+<section class="hero">
+<img class="float f1" src="assets/flower-bunch.png" alt="">
+<img class="float f2" src="assets/teapot.png" alt="">
+<img class="float f3" src="assets/balloon-dog.png" alt="">
+<img class="float f4" src="assets/flower-pink.png" alt="">
+<div class="shop-sign"><h1>Deja Brew</h1><p>A FEELING WORTH REPEATING · EST. 2026</p></div>
+<div class="striped-awning"></div>
+<div class="storefront">
+<aside class="door">
+<div class="door-label">coffee bar ♡</div>
+<div class="door-glass">come on in!<img src="assets/teacup-stack.png" alt="Watercolor stacked teacups"></div>
+<div class="hours"><b>OPENING HOURS</b><br>MONDAY – SUNDAY<br>9:00 AM – 9:00 PM<br><small>Proposed café hours</small></div>
+</aside>
+<div class="cafe-window">
+<div class="window-canopy"></div>
+<div class="window-content"><span class="eyebrow">A cozy little corner for you</span><h2>Little sips, lovely moments.</h2><p>Find comfort in familiar favorites, sweet treats, and thoughtful little details. Your next favorite coffee moment starts here.</p>
+<div class="window-objects"><img src="assets/teapot.png" alt="Watercolor teapot"><img src="assets/vintage-cup.png" alt="Vintage coffee cup"><img src="assets/flower-pink.png" alt="Pink flower"></div>
+<a class="button" href="menu.html">Take a peek at our menu ♡</a>
+</div></div>
+<aside class="shelf">
+<a href="menu.html"><img src="assets/teacup-stack.png" alt="">DRINKS</a>
+<a href="about.html"><img src="assets/storybook-deer-books.png" alt="">OUR STORY</a>
+<a href="gallery.html"><img src="assets/flower-bunch.png" alt="">LITTLE MOMENTS</a>
+</aside>
+</div>
+</section>
+<section class="section story"><div class="inner story-grid">
+<div class="art-collage"><img class="cup" src="assets/teacup-stack.png" alt="Vintage watercolor teacups"><img class="mini one" src="assets/star-pink.png" alt=""><img class="mini two" src="assets/bow-yellow.png" alt=""></div>
+<div class="story-copy"><span class="eyebrow">A little note from us</span><h2>Some moments deserve a replay.</h2><p>Inspired by the feeling of déjà vu — those familiar little moments you wish you could experience all over again — Deja Brew is a cozy café concept made for comfort, connection, and everyday memories.</p><p>Come as you are, take a pause, and make a little moment worth repeating.</p><a class="button" href="about.html">Get to know us ♡</a></div>
+</div></section>
+<section class="section menu-section"><div class="inner">
+<div class="section-heading"><span class="eyebrow">A little something to sip</span><h2>Lovely little favorites</h2><p>Meet the drinks we're dreaming up for you.</p></div>
+<div class="menu-cards">
+<article class="menu-card"><img src="assets/vintage-cup.png" alt="Watercolor vintage cup"><h3>Egg Coffee</h3><p>Rich coffee topped with a smooth, creamy and lightly sweet egg foam.</p><small>OUR SIGNATURE PICK</small></article>
+<article class="menu-card"><img src="assets/teapot.png" alt="Watercolor teapot"><h3>Your Café Classic</h3><p>A familiar favorite for slow mornings, little breaks, and catch-ups.</p><small>MORE SIPS COMING SOON</small></article>
+<article class="menu-card"><img src="assets/teacup-stack.png" alt="Watercolor stacked teacups"><h3>A Sweet Little Treat</h3><p>A lovely pairing for your favorite drink and a cozy afternoon.</p><small>MORE TREATS COMING SOON</small></article>
+</div><div class="section-heading" style="margin:28px 0 0"><a class="button" href="menu.html">See the menu ♡</a></div>
+</div></section>
+<section class="section promo"><div class="inner promo-card"><div class="promo-copy"><span class="eyebrow" style="color:#f8c8dc">A little something special</span><h2>Make room for a sweet surprise.</h2><p>From new drink discoveries to thoughtful little treats, there's always something lovely waiting at Deja Brew. Stay close for our upcoming café offers and announcements.</p><a class="button" href="promotions.html">See what's brewing ♡</a></div><img src="assets/flower-yellow.png" alt="Watercolor yellow flower"></div></section>
+<section class="section gallery"><div class="inner"><div class="section-heading"><span class="eyebrow">Collected little moments</span><h2>A peek inside our world</h2><p>Pretty details, cozy corners, and things that make us smile.</p></div>
+<div class="gallery-grid"><img src="assets/frog.png" alt="Watercolor frog"><img src="assets/lily.png" alt="Watercolor lily"><img src="assets/sofa.png" alt="Vintage illustrated sofa"><img src="assets/jellyfish.png" alt="Watercolor jellyfish"><img src="assets/flower-bunch.png" alt="Watercolor flowers"><img src="assets/bow.png" alt="Polka dot bow"><img src="assets/storybook-deer-books.png" alt="Storybook deer and books"><img src="assets/heart-plaid.png" alt="Plaid heart sticker"></div></div></section>
+</main>
+<footer><div class="footer-mark">DB</div><strong>DEJA BREW</strong><p>A FEELING WORTH REPEATING.</p><p>Made with love, a little coffee, and lots of daydreams. ♡</p><small>© 2026 Deja Brew · Student café concept</small></footer>
+<script>
+const toggle=document.getElementById('menuToggle');
+const links=document.getElementById('navLinks');
+toggle.addEventListener('click',()=>{const open=links.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));toggle.textContent=open?'×':'☰';});
+links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.textContent='☰';}));
+</script>
+</body></html>
